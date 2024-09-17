@@ -1,0 +1,34 @@
+.root {
+    height: 56px;
+    width: 100%;
+    border-radius: 28px;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 700;
+    color: #fff;
+    transition: all 0.3s ease 0s;
+    &.primary {
+        background-color: #6A5DC2;
+        &:disabled {
+            background-color: #D6D2F1;
+            color:#FFFFFF80;
+        }
+        &:hover{
+            background-color: #8577E1;
+        }
+    }
+    &.secondary {
+        border: 1px solid #00000066;
+        background: #393B3C;
+        &:disabled {
+            border: 1px solid #00000066;
+            background: #747474;
+            color: #FFFFFF80;
+        }
+        &:hover {
+            border: 1px solid #000000;
+            background: #FFFFFF;
+            color: #000000;
+        }
+    }
+}

@@ -1,0 +1,24 @@
+.root {
+  padding: 62px 0 160px 0;
+  .top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 64px;
+    h2 {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 56px;
+    }
+    .body {
+        display: flex;
+        justify-content: space-between;
+        row-gap: 64px;
+        margin-bottom: 64px;
+    }
+    .more {
+        display: flex;
+        justify-content: center;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+.root {
+    display: flex;
+    align-items: center;
+    width: 560px;
+    height: 48px;
+    gap: 12px;
+    background-color: #393B3C;
+    border-radius: 8px;
+    padding: 0 16px;
+    input {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 24px;
+        width: 100%;
+        color: #fff;
+        background: transparent;
+        &::placeholder {
+            color: #FFFFFF80;
+        }
+    }
+}
