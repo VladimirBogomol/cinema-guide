@@ -5,16 +5,14 @@ import Header from "../../components/layout/Header/Header";
 import Poster from "../../components/layout/Poster/Poster";
 import TopMovies from "../../components/layout/topMovies/TopMovies";
 import st from "./Home.module.scss";
-import {
-  getRandomMovie,
-  getTopMovies,
-} from "../../redux/slices/moviesReducer";
+import { getRandomMovie, getTopMovies } from "../../redux/slices/moviesReducer";
+import { Outlet } from "react-router-dom";
 
 export default function Home() {
   const dispatch = useAppDispatch();
-   const { randomMovie, randomLoading } = useAppSelector(
-     (state) => state.movies
-   );
+  const { randomMovie, randomLoading } = useAppSelector(
+    (state) => state.movies
+  );
   useEffect(() => {
     dispatch(getRandomMovie());
     dispatch(getTopMovies());
@@ -23,10 +21,15 @@ export default function Home() {
     <div className={st.root}>
       <Header />
       <div className="container">
-        <Poster onRefresh={() => dispatch(getRandomMovie())} movie={randomMovie} loading={randomLoading} />
+        <Poster
+          onRefresh={() => dispatch(getRandomMovie())}
+          movie={randomMovie}
+          loading={randomLoading}
+        />
         <TopMovies />
         <Footer />
       </div>
+      <Outlet />
     </div>
   );
 }

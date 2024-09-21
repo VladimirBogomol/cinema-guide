@@ -17,6 +17,7 @@ type Props = {
     | undefined;
   sx?: React.CSSProperties;
   disabled?: boolean;
+  type?: "button" | "submit" | "reset" | undefined,
 };
 
 export default function Button({
@@ -25,9 +26,10 @@ export default function Button({
   children,
   sx,
   disabled = false,
+  type = "button",
 }: Props) {
   return (
-    <button
+    <button type={type}
       className={classNames(
         st.root,
         variant === "primary" ? st.primary : st.secondary

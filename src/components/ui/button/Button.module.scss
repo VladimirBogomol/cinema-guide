@@ -12,6 +12,7 @@
         &:disabled {
             background-color: #D6D2F1;
             color:#FFFFFF80;
+            pointer-events: none;
         }
         &:hover{
             background-color: #8577E1;
@@ -24,6 +25,7 @@
             border: 1px solid #00000066;
             background: #747474;
             color: #FFFFFF80;
+            pointer-events: none;
         }
         &:hover {
             border: 1px solid #000000;

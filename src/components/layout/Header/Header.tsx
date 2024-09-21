@@ -1,9 +1,11 @@
 import st from "./Header.module.scss";
 import logo from "../../../assets/logo.png";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import Search from "../../ui/search/Search";
 
 export default function Header() {
+  const location = useLocation();
+
   return (
     <header className={st.root}>
       <div className="container">
@@ -24,9 +26,7 @@ export default function Header() {
             </NavLink>
             <Search />
           </nav>
-          <Link
-            to="/login"
-          >
+          <Link state={{ background: location }} to="/login">
             Войти
           </Link>
         </div>

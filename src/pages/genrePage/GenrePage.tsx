@@ -11,10 +11,7 @@ type Props = {};
 
 export default function GenrePage({}: Props) {
   const dispatch = useAppDispatch();
-  const [genre, setGenre] = useState("");
-  function changeGenre(newGenre: string) {
-    setGenre(newGenre);
-  }
+
   useEffect(() => {
     dispatch(getGenres());
   }, []);
@@ -22,7 +19,7 @@ export default function GenrePage({}: Props) {
     <div className={st.root}>
       <Header />
       <div className="container">
-        {genre ? <MoviesInGenre genre={genre} /> : <GenreList />}
+        <GenreList />
         <Footer />
       </div>
     </div>
