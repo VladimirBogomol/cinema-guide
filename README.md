@@ -23,6 +23,9 @@ CinemaGuide – это онлайн-платформа, где пользова�
 ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 - SCSS
 - Axios
+- Formik
+- Yup
+  
   Установка и запуск  
 1. Клонируйте репозиторий:  
    git clone https://github.com/VladimirBogomol/cinema-guide
