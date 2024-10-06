@@ -20,7 +20,6 @@ const initialState: IinitialState = {
 
 type Filter = {
   genre: string;
-  count: number,
 };
 
 const getGenres = createAsyncThunk("genre/getGenres", (data) => {
@@ -29,10 +28,9 @@ const getGenres = createAsyncThunk("genre/getGenres", (data) => {
 
 const getMoviesInGenre = createAsyncThunk(
   "genre/getMoviesInGenre",
-  ({ genre, count }: Filter) => {
+  ({ genre }: Filter) => {
     const params = new URLSearchParams(); 
     params.append("genre", genre);
-    params.append("count", String(count));
     return axiosInstance.get(`/movie`, { params }).then((res) => res.data);
   }
 );

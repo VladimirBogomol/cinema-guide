@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import st from "./RegisterModal.module.scss";
 import Modal from "../../ui/modal/Modal";
 import MailIcon from "../../../assets/icons/MailIcon";
 import KeyIcon from "../../../assets/icons/KeyIcon";
 import Button from "../../ui/button/Button";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import PersonIcon from "../../../assets/icons/PersonIcon";
 import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import classNames from "classnames";
+import { useAppDispatch, useAppSelector } from "../../../redux/store";
+import { handleRegister } from "../../../redux/slices/userReducer";
 
 type Props = {};
 
-export default function RegisterModal({ }: Props) {
+export default function RegisterModal({}: Props) {
   function equalTo(ref, msg) {
     return this.test({
       name: "equalTo",
@@ -29,27 +31,54 @@ export default function RegisterModal({ }: Props) {
 
   Yup.addMethod(Yup.string, "equalTo", equalTo);
   const location = useLocation();
+  const dispatch = useAppDispatch();
+  const { completeRegister } = useAppSelector((state) => state.user);
+  const navigate = useNavigate();
 
-   const initialState = {
-     email: "",
-     password: "",
-     name: '',
-     surname: '',
-     repeatPassword: '',
-   };
+  const initialState = {
+    email: "",
+    password: "",
+    name: "",
+    surname: "",
+    repeatPassword: "",
+  };
 
-   const validationSchema = Yup.object().shape({
-     email: Yup.string().email().required(),
-     password: Yup.string().min(6).required(),
-     name: Yup.string().required(),
-     surname: Yup.string().required(),
-     //@ts-ignore
-     repeatPassword: Yup.string().equalTo(Yup.ref("password")),
-   });
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().email().required(),
+    password: Yup.string().min(6).required(),
+    name: Yup.string().required(),
+    surname: Yup.string().required(),
+    //@ts-ignore
+    repeatPassword: Yup.string().equalTo(Yup.ref("password")),
+  });
 
-   function onSubmit(values) {
-     console.log(values);
-   }
+  function onSubmit(values) {
+    dispatch(
+      handleRegister({
+        name: values.name,
+        surname: values.surname,
+        email: values.email,
+        password: values.password,
+      })
+    );
+  }
+  if (completeRegister) {
+    return (
+      <Modal link={location.state.background.pathname}>
+        <div className={st.root}>
+          <h2>Регистрация завершена</h2>
+          <p className={st.text}>
+            Используйте Вашу электронную почту для входа
+          </p>
+          <Link to="/login" state={{ background: location.state.background }}>
+            <Button type="button" variant="primary" onClick={() => {}}>
+              Войти
+            </Button>
+          </Link>
+        </div>
+      </Modal>
+    );
+  }
 
   return (
     <Modal link={location.state.background.pathname}>
@@ -101,11 +130,17 @@ export default function RegisterModal({ }: Props) {
                 </div>
                 <div
                   className={
-                    errors.repeatPassword ? classNames(st.input, st.error) : st.input
+                    errors.repeatPassword
+                      ? classNames(st.input, st.error)
+                      : st.input
                   }
                 >
                   <KeyIcon />
-                  <Field name="repeatPassword" type="password" placeholder="Подтвердите пароль" />
+                  <Field
+                    name="repeatPassword"
+                    type="password"
+                    placeholder="Подтвердите пароль"
+                  />
                 </div>
                 <div className={st.bottom}>
                   <Button
@@ -131,7 +166,3 @@ export default function RegisterModal({ }: Props) {
     </Modal>
   );
 }
-
-
-
-

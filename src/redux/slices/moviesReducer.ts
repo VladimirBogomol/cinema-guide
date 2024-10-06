@@ -36,6 +36,7 @@ interface IinitialState {
   currentLoading: boolean,
   error: string;
   topMovies: Movie[];
+  searchMovies: Movie[],
   randomMovie: Movie | null;
   currentMovie: Movie | null;
 }
@@ -46,12 +47,17 @@ const initialState: IinitialState = {
   randomLoading: false,
   error: "",
   topMovies: [],
+  searchMovies: [],
   randomMovie: null,
   currentMovie: null,
 };
 
 const getTopMovies = createAsyncThunk("movies/getTopMovies", (data) => {
   return axiosInstance.get(`/movie/top10`).then((res) => res.data);
+});
+
+const handleSearchMovies = createAsyncThunk("movies/handleSearchMovies", (search) => {
+  return axiosInstance.get(`/movie?title=${search}&count=5`).then((res) => res.data);
 });
 
 const getRandomMovie = createAsyncThunk("movies/getRandomMovie", (data) => {
@@ -65,7 +71,11 @@ const getCurrentMovie = createAsyncThunk("movies/getCurrentMovie", (id: any) => 
 export const moviesSlice = createSlice({
   name: "movies",
   initialState,
-  reducers: {},
+  reducers: {
+    setClearSearch: (state) => {
+      state.searchMovies = [];
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(getTopMovies.pending, (state) => {
       state.loading = true;
@@ -78,6 +88,9 @@ export const moviesSlice = createSlice({
     builder.addCase(getTopMovies.rejected, (state) => {
       state.loading = false;
       state.error = "Произошла ошибка";
+    });
+    builder.addCase(handleSearchMovies.fulfilled, (state, action) => {
+      state.searchMovies = action.payload;
     });
     builder.addCase(getRandomMovie.pending, (state) => {
       state.randomLoading = true;
@@ -106,6 +119,6 @@ export const moviesSlice = createSlice({
   },
 });
 
-export { getTopMovies, getRandomMovie, getCurrentMovie };
-// export const {  } = productsSlice.actions;
+export { getTopMovies, handleSearchMovies, getRandomMovie, getCurrentMovie };
+export const { setClearSearch } = moviesSlice.actions;
 export default moviesSlice.reducer;

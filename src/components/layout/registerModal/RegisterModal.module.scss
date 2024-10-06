@@ -7,6 +7,14 @@
     text-align: center;
     color: rgba(0, 0, 0, 1);
   }
+  .text {
+    margin-bottom: 24px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    color: rgba(0, 0, 0, 1);
+  }
   .input {
     display: flex;
     align-items: center;
@@ -30,9 +38,9 @@
   .error {
     border: 1px solid rgba(255, 117, 117, 1);
     svg {
-        path {
-            fill: rgba(255, 117, 117, 1);
-        }
+      path {
+        fill: rgba(255, 117, 117, 1);
+      }
     }
   }
   .bottom {

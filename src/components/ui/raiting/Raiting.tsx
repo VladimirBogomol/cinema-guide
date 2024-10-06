@@ -4,6 +4,7 @@ import { StarIcon } from '../../../assets/icons/StarIcon'
 
 type Props = {
     rate: number,
+    sx?: React.CSSProperties,
 }
 
 function changeColor(rate: number) {
@@ -21,9 +22,9 @@ function changeColor(rate: number) {
     }
 }
 
-export default function Raiting({rate}: Props) {
+export default function Raiting({rate, sx={}}: Props) {
   return (
-      <div className={st.root} style={{ backgroundColor: changeColor(rate) }} >
+      <div className={st.root} style={{ backgroundColor: changeColor(rate), ...sx }} >
           <StarIcon />
           <span>{rate}</span>
     </div>

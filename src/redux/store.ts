@@ -2,19 +2,22 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import moviesReducer from "./slices/moviesReducer";
 import genreReducer from "./slices/genreReducer";
-
+import userReducer from "./slices/userReducer";
+import favoritesReducer from "./slices/favoritesReducer";
 
 export const store = configureStore({
-    reducer: {
-        movies: moviesReducer,
-        genre: genreReducer,
-    }
-})
+  reducer: {
+    movies: moviesReducer,
+    genre: genreReducer,
+    user: userReducer,
+    favorites: favoritesReducer,
+  },
+});
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof store.getState>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch
+export type AppDispatch = typeof store.dispatch;
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch = useDispatch.withTypes<AppDispatch>();

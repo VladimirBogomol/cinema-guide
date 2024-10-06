@@ -4,10 +4,12 @@ import Modal from "../../ui/modal/Modal";
 import MailIcon from "../../../assets/icons/MailIcon";
 import KeyIcon from "../../../assets/icons/KeyIcon";
 import Button from "../../ui/button/Button";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import classNames from "classnames";
 import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
+import { useAppDispatch } from "../../../redux/store";
+import { handleLogin } from "../../../redux/slices/userReducer";
 
 type Props = {};
 
@@ -18,6 +20,9 @@ export default function LoginModal({}: Props) {
     password: "",
   };
 
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const validationSchema = Yup.object().shape({
     email: Yup.string().email().required(),
     password: Yup.string().min(6).required(),
@@ -25,6 +30,8 @@ export default function LoginModal({}: Props) {
 
   function onSubmit(values) {
     console.log(values);
+    dispatch(handleLogin(values)).then(() => navigate("/profile"))
+
   }
 
   return (

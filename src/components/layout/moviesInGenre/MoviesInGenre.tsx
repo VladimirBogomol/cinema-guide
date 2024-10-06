@@ -14,11 +14,11 @@ export default function MoviesInGenre({ }: Props) {
   const { name } = useParams();
   const { moviesInGenre } = useAppSelector((state) => state.genre)
 
-  const [count, setCount] = useState(15)
+  const [count, setCount] = useState(10);
 
   useEffect(() => {
-    if (name) { dispatch(getMoviesInGenre({genre: name, count})) }
-  }, [count])
+    if (name) { dispatch(getMoviesInGenre({genre: name })) }
+  }, [])
   return (
     <div className={st.root}>
       <div className="container">
@@ -27,9 +27,9 @@ export default function MoviesInGenre({ }: Props) {
           <h2>{name}</h2>
         </Link>
         <div className={st.body}>
-          {moviesInGenre.map((movie) => { return <FilmCard key={movie.id} img={movie.posterUrl} id={movie.id} />; })}
+          {moviesInGenre.slice(0, count).map((movie) => { return <FilmCard key={movie.id} img={movie.posterUrl} id={movie.id} />; })}
         </div>
-        {count < 55 && <div className={st.more}>
+        {count < moviesInGenre.length && <div className={st.more}>
           <Button sx={{ width: "218px" }} variant="primary" onClick={() => {setCount((prev) => prev + 10)}}>
             Показать еще
           </Button>

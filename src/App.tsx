@@ -6,6 +6,8 @@ import MoviesInGenre from "./components/layout/moviesInGenre/MoviesInGenre";
 import Modal from "./components/ui/modal/Modal";
 import LoginModal from "./components/layout/loginModal/LoginModal";
 import RegisterModal from "./components/layout/registerModal/RegisterModal";
+import AccountPage from "./pages/accountPage/AccountPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   const location = useLocation();
@@ -18,11 +20,19 @@ function App() {
         <Route path="/movies/:id" element={<MoviePage />} />
         <Route path="/genres" element={<GenrePage />} />
         <Route path="/genres/:name" element={<MoviesInGenre />} />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <AccountPage />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
       {background && (
         <Routes>
           <Route path="/login" element={<LoginModal />} />
-          <Route path="/register" element={<RegisterModal/>} />
+          <Route path="/register" element={<RegisterModal />} />
         </Routes>
       )}
     </div>

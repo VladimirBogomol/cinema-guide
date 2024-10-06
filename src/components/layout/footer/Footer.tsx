@@ -2,6 +2,9 @@ import React from 'react'
 import st from "./Footer.module.scss"
 import CIcon from '../../../assets/icons/CIcon';
 import VKIcon from '../../../assets/icons/VKIcon';
+import YTIcon from "../../../assets/icons/YTIcon"
+import OKIcon from '../../../assets/icons/OKIcon';
+import TelegramIcon from '../../../assets/icons/TelegramIcon';
 
 type Props = {}
 
@@ -15,9 +18,9 @@ export default function Footer({}: Props) {
       </div>
           <div className={st.right}>
               <a href=""><VKIcon/></a>
-              <a href=""><VKIcon/></a>
-              <a href=""><VKIcon/></a>
-              <a href=""><VKIcon/></a>
+              <a href=""><YTIcon/></a>
+              <a href=""><OKIcon/></a>
+              <a href=""><TelegramIcon/></a>
       </div>
     </div>
   );
