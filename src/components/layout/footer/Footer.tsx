@@ -1,4 +1,3 @@
-import React from 'react'
 import st from "./Footer.module.scss"
 import CIcon from '../../../assets/icons/CIcon';
 import VKIcon from '../../../assets/icons/VKIcon';
@@ -6,9 +5,7 @@ import YTIcon from "../../../assets/icons/YTIcon"
 import OKIcon from '../../../assets/icons/OKIcon';
 import TelegramIcon from '../../../assets/icons/TelegramIcon';
 
-type Props = {}
-
-export default function Footer({}: Props) {
+export default function Footer() {
   return (
     <div className={st.root}>
       <div className={st.left}>

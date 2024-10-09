@@ -1,6 +1,4 @@
-import React from "react";
 import st from "./Poster.module.scss";
-import svg from "../../../assets/image.png";
 import Raiting from "../../ui/raiting/Raiting";
 import Button from "../../ui/button/Button";
 import LikeIcon from "../../../assets/icons/LikeIcon";
@@ -10,18 +8,13 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Movie } from "../../../redux/slices/moviesReducer";
 import { handleAddToFavorite, handleDeleteFavorite } from "../../../redux/slices/favoritesReducer";
 import ActiveLikeIcon from "../../../assets/icons/ActiveLikeIcon";
+import { convertMinutesToHours } from "../../../utils/convertMinutesToHours";
 
 type Props = {
   onRefresh?: () => void;
   movie: Movie | null;
   loading: boolean;
 };
-
-export function convertMinutesToHours(minutes: number): string {
-  const hours = Math.floor(minutes / 60);
-  const remainingMinutes = minutes % 60;
-  return `${hours} ч ${remainingMinutes} мин`;
-}
 
 export default function Poster({ onRefresh, movie, loading }: Props) {
   const navigate = useNavigate();
@@ -41,7 +34,7 @@ export default function Poster({ onRefresh, movie, loading }: Props) {
         <img src={movie.backdropUrl} alt="Logo" />
         <div className={st.content}>
           <div className={st.top}>
-            <Raiting rate={movie.tmdbRating.toFixed(1)} />
+            <Raiting rate={+movie.tmdbRating.toFixed(1)} />
             <span>{movie.releaseYear}</span>
             <span>{movie.genres.join(", ")}</span>
             <span>{convertMinutesToHours(movie.runtime)}</span>
@@ -51,13 +44,15 @@ export default function Poster({ onRefresh, movie, loading }: Props) {
             <h3>{movie.plot}</h3>
           </div>
           <div className={st.btns}>
-            <Button
-              sx={{ width: "171px" }}
-              variant="primary"
-              onClick={() => {}}
-            >
-              Трейлер
-            </Button>
+            <Link state={{ background: location }} to={`/video/${movie.id}`}>
+              <Button
+                sx={{ width: "171px" }}
+                variant="primary"
+                onClick={() => {}}
+              >
+                Трейлер
+              </Button>
+            </Link>
             {onRefresh && (
               <Button
                 sx={{ width: "171px" }}

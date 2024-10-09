@@ -11,8 +11,8 @@ export type Movie = {
   genres: string[];
   plot: string;
   runtime: number;
-  budget: any;
-  revenue: any;
+  budget: string | null;
+  revenue: string | null;
   homepage: string;
   status: string;
   posterUrl: string;
@@ -21,13 +21,13 @@ export type Movie = {
   trailerYouTubeId: string;
   tmdbRating: number;
   searchL: string;
-  keywords: any[];
-  countriesOfOrigin: any[];
-  languages: any[];
-  cast: any[];
-  director: any;
-  production: any;
-  awardsSummary: any;
+  keywords: string[];
+  countriesOfOrigin: string[];
+  languages: string[];
+  cast: string[];
+  director: string;
+  production: string;
+  awardsSummary: string;
 };
 
 interface IinitialState {

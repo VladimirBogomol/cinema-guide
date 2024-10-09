@@ -9,8 +9,8 @@ import {
   handleSearchMovies,
   setClearSearch,
 } from "../../../redux/slices/moviesReducer";
-import { convertMinutesToHours } from "../../layout/Poster/Poster";
 import { useLocation, useNavigate } from "react-router-dom";
+import { convertMinutesToHours } from "../../../utils/convertMinutesToHours";
 
 export default function Search() {
   const [value, setValue] = useState("");
@@ -24,7 +24,7 @@ export default function Search() {
   useEffect(() => {
     dispatch(setClearSearch());
     setValue("");
-  }, [location]);
+  }, [location, dispatch]);
 
   function handleChange(e) {
     setValue(e.target.value);

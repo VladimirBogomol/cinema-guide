@@ -1,4 +1,3 @@
-import React from "react";
 import st from "./LoginModal.module.scss";
 import Modal from "../../ui/modal/Modal";
 import MailIcon from "../../../assets/icons/MailIcon";
@@ -11,9 +10,7 @@ import * as Yup from "yup";
 import { useAppDispatch } from "../../../redux/store";
 import { handleLogin } from "../../../redux/slices/userReducer";
 
-type Props = {};
-
-export default function LoginModal({}: Props) {
+export default function LoginModal() {
   const location = useLocation();
   const initialState = {
     email: "",
@@ -28,7 +25,7 @@ export default function LoginModal({}: Props) {
     password: Yup.string().min(6).required(),
   });
 
-  function onSubmit(values) {
+  function onSubmit(values: {email: string, password: string}) {
     console.log(values);
     dispatch(handleLogin(values)).then(() => navigate("/profile"))
 

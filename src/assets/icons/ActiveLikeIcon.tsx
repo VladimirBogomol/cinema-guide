@@ -1,8 +1,5 @@
-import React from "react";
 
-type Props = {};
-
-export default function ActiveLikeIcon({}: Props) {
+export default function ActiveLikeIcon() {
   return (
     <svg
       width="24"

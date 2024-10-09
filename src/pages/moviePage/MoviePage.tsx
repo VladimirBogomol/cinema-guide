@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import st from "./MoviePage.module.scss"
 import Header from '../../components/layout/Header/Header';
 import Poster from '../../components/layout/Poster/Poster';
@@ -8,14 +8,12 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { getCurrentMovie } from '../../redux/slices/moviesReducer';
 
-type Props = {}
-
-export default function MoviePage({ }: Props) {
+export default function MoviePage() {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getCurrentMovie(id));
-  }, [id]);
+  }, [id, dispatch]);
 
   const { currentMovie, currentLoading } = useAppSelector((state) => state.movies); 
 

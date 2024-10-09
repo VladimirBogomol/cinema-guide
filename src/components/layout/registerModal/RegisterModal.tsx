@@ -1,10 +1,9 @@
-import React, { useState } from "react";
 import st from "./RegisterModal.module.scss";
 import Modal from "../../ui/modal/Modal";
 import MailIcon from "../../../assets/icons/MailIcon";
 import KeyIcon from "../../../assets/icons/KeyIcon";
 import Button from "../../ui/button/Button";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import PersonIcon from "../../../assets/icons/PersonIcon";
 import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
@@ -12,10 +11,10 @@ import classNames from "classnames";
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import { handleRegister } from "../../../redux/slices/userReducer";
 
-type Props = {};
-
-export default function RegisterModal({}: Props) {
+export default function RegisterModal() {
+  //@ts-expect-error expect error help
   function equalTo(ref, msg) {
+    //@ts-expect-error expect error help
     return this.test({
       name: "equalTo",
       exclusive: false,
@@ -23,7 +22,7 @@ export default function RegisterModal({}: Props) {
       params: {
         reference: ref.path,
       },
-      test: function (value) {
+      test: function (value: string) {
         return value === this.resolve(ref);
       },
     });
@@ -33,7 +32,6 @@ export default function RegisterModal({}: Props) {
   const location = useLocation();
   const dispatch = useAppDispatch();
   const { completeRegister } = useAppSelector((state) => state.user);
-  const navigate = useNavigate();
 
   const initialState = {
     email: "",
@@ -48,11 +46,16 @@ export default function RegisterModal({}: Props) {
     password: Yup.string().min(6).required(),
     name: Yup.string().required(),
     surname: Yup.string().required(),
-    //@ts-ignore
+    //@ts-expect-error expect error help
     repeatPassword: Yup.string().equalTo(Yup.ref("password")),
   });
 
-  function onSubmit(values) {
+  function onSubmit(values: {
+    name: string;
+    surname: string;
+    email: string;
+    password: string;
+  }) {
     dispatch(
       handleRegister({
         name: values.name,

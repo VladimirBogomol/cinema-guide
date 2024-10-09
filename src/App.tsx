@@ -3,11 +3,11 @@ import Home from "./pages/home/Home";
 import MoviePage from "./pages/moviePage/MoviePage";
 import GenrePage from "./pages/genrePage/GenrePage";
 import MoviesInGenre from "./components/layout/moviesInGenre/MoviesInGenre";
-import Modal from "./components/ui/modal/Modal";
 import LoginModal from "./components/layout/loginModal/LoginModal";
 import RegisterModal from "./components/layout/registerModal/RegisterModal";
 import AccountPage from "./pages/accountPage/AccountPage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import VideoModal from "./components/layout/videoModal/VideoModal";
 
 function App() {
   const location = useLocation();
@@ -33,6 +33,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<LoginModal />} />
           <Route path="/register" element={<RegisterModal />} />
+          <Route path="/video/:id" element={<VideoModal/>} />
         </Routes>
       )}
     </div>
