@@ -12,7 +12,11 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 import { convertMinutesToHours } from "../../../utils/convertMinutesToHours";
 
-export default function Search() {
+type Props = {
+  onClose?: () => void,
+}
+
+export default function Search({onClose = () => {}}:Props) {
   const [value, setValue] = useState("");
   const dispatch = useAppDispatch();
   const { searchMovies } = useAppSelector((state) => state.movies);
@@ -38,6 +42,7 @@ export default function Search() {
   function clearSearch() {
     setValue("");
     dispatch(setClearSearch());
+    onClose();
   }
 
   function handleDebounce(search) {

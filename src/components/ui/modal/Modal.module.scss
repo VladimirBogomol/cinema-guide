@@ -1,3 +1,9 @@
+@mixin mobile {
+  @media screen and (max-width: 770px) {
+    @content;
+  }
+}
+
 .root {
   position: fixed;
   display: flex;
@@ -15,6 +21,11 @@
     padding: 64px 40px;
     border-radius: 24px;
     position: relative;
+    @include mobile {
+      padding: 32px 20px;
+      padding-top: 64px;
+      width: 335px;
+    }
     .close {
         position: absolute;
         display: flex;
@@ -26,6 +37,10 @@
         height: 48px;
         border-radius: 50%;
         background-color: white;
+        @include mobile {
+          top: 8px;
+          right: 8px;
+        }
     }
     .img {
         display: flex;

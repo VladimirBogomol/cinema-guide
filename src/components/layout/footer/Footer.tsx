@@ -10,14 +10,24 @@ export default function Footer() {
     <div className={st.root}>
       <div className={st.left}>
         <h3>LLC «Мультимедиа Визион»</h3>
-        <CIcon />
-        <h4>Все права защищены</h4>
+        <div className={st.copy}>
+          <CIcon />
+          <h4>Все права защищены</h4>
+        </div>
       </div>
-          <div className={st.right}>
-              <a href=""><VKIcon/></a>
-              <a href=""><YTIcon/></a>
-              <a href=""><OKIcon/></a>
-              <a href=""><TelegramIcon/></a>
+      <div className={st.right}>
+        <a href="">
+          <VKIcon />
+        </a>
+        <a href="">
+          <YTIcon />
+        </a>
+        <a href="">
+          <OKIcon />
+        </a>
+        <a href="">
+          <TelegramIcon />
+        </a>
       </div>
     </div>
   );

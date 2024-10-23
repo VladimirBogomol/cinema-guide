@@ -3,18 +3,19 @@ import axiosInstance from "../../axiosInstance";
 import { Movie } from "./moviesReducer";
 
 type UserCredentialsT = {
-  name: string,
-  surname: string,
-  email: string,
-  favorites: Movie[],
-} 
+  name: string;
+  surname: string;
+  email: string;
+  favorites: Movie[];
+};
 
 interface IinitialState {
   authorized: boolean;
   loading: boolean;
   completeRegister: boolean;
   error: string;
-  userCredentials: UserCredentialsT | null,
+  userCredentials: UserCredentialsT | null;
+  openSearch: boolean;
 }
 
 const initialState: IinitialState = {
@@ -23,6 +24,7 @@ const initialState: IinitialState = {
   completeRegister: false,
   error: "",
   userCredentials: null,
+  openSearch: false,
 };
 
 type LoginCreadentials = {
@@ -53,12 +55,9 @@ const handleRegister = createAsyncThunk(
   }
 );
 
-const getProfile = createAsyncThunk(
-  "user/getProfile",
-  () => {
-    return axiosInstance.get(`/profile`).then((res) => res.data);
-  }
-);
+const getProfile = createAsyncThunk("user/getProfile", () => {
+  return axiosInstance.get(`/profile`).then((res) => res.data);
+});
 
 const handleLogout = createAsyncThunk("user/handleLogout", () => {
   return axiosInstance.get(`/auth/logout`).then((res) => res.data);
@@ -67,7 +66,11 @@ const handleLogout = createAsyncThunk("user/handleLogout", () => {
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    setOpenSearch: (state, action) => {
+      state.openSearch = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(handleLogin.pending, (state) => {
       state.loading = true;
@@ -95,27 +98,27 @@ export const userSlice = createSlice({
       state.error = "Произошла ошибка";
       state.completeRegister = false;
     });
-      builder.addCase(getProfile.pending, (state) => {
-        state.loading = true;
-      });
-      builder.addCase(getProfile.fulfilled, (state, action) => {
-        state.loading = false;
-        state.error = "";
-        state.authorized = true;
-        state.userCredentials = action.payload;
-      });
-      builder.addCase(getProfile.rejected, (state) => {
-        state.loading = false;
-        state.error = "Произошла ошибка";
-        state.authorized = false;
-      });
-     builder.addCase(handleLogout.fulfilled, (state, action) => {
-       state.authorized = false;
-       state.userCredentials = null;
-     });
+    builder.addCase(getProfile.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getProfile.fulfilled, (state, action) => {
+      state.loading = false;
+      state.error = "";
+      state.authorized = true;
+      state.userCredentials = action.payload;
+    });
+    builder.addCase(getProfile.rejected, (state) => {
+      state.loading = false;
+      state.error = "Произошла ошибка";
+      state.authorized = false;
+    });
+    builder.addCase(handleLogout.fulfilled, (state, action) => {
+      state.authorized = false;
+      state.userCredentials = null;
+    });
   },
 });
 
 export { handleLogin, handleLogout, handleRegister, getProfile };
-// export const {  } = productsSlice.actions;
+export const { setOpenSearch } = userSlice.actions;
 export default userSlice.reducer;

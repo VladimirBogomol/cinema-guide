@@ -44,18 +44,19 @@ export default function Poster({ onRefresh, movie, loading }: Props) {
             <h3>{movie.plot}</h3>
           </div>
           <div className={st.btns}>
-            <Link state={{ background: location }} to={`/video/${movie.id}`}>
+            <Link className={st.link} state={{ background: location }} to={`/video/${movie.id}`}>
               <Button
                 sx={{ width: "171px" }}
                 variant="primary"
-                onClick={() => {}}
+                onClick={() => { }}
+                className={onRefresh ? '' : st.trailerBtn}
               >
                 Трейлер
               </Button>
             </Link>
             {onRefresh && (
-              <Button
-                sx={{ width: "171px" }}
+              <Button className={st.aboutBtn}
+                sx={{ minWidth: "167px" }}
                 variant="secondary"
                 onClick={() => {
                   navigate(`/movies/${movie.id}`);
@@ -88,7 +89,7 @@ export default function Poster({ onRefresh, movie, loading }: Props) {
               </Button>
             ) : (
               <Button
-                sx={{ width: "68px" }}
+                sx={{ minWidth: "68px" }}
                 variant="secondary"
                 onClick={() => {
                   dispatch(handleAddToFavorite({ id: movie.id }));
@@ -98,8 +99,8 @@ export default function Poster({ onRefresh, movie, loading }: Props) {
               </Button>
             )}
             {onRefresh && (
-              <Button
-                sx={{ width: "68px" }}
+              <Button className={st.refreshBtn}
+                sx={{ minWidth: "68px" }}
                 variant="secondary"
                 onClick={() => {
                   onRefresh();

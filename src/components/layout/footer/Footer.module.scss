@@ -1,11 +1,33 @@
+@mixin mobile {
+  @media screen and (max-width: 770px) {
+    @content;
+  }
+}
+
 .root {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 40px 0;
+  @include mobile {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 24px 0;
+    gap: 32px;
+  }
+  .copy {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
   .left {
     display: flex;
     gap: 14px;
+    @include mobile {
+      flex-direction: column;
+      gap: 8px;
+    }
     h3 {
       font-size: 18px;
       font-weight: 700;

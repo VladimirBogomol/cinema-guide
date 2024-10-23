@@ -1,8 +1,17 @@
+@mixin mobile {
+  @media screen and (max-width: 770px) {
+    @content;
+  }
+}
+
 .root {
   background-color: rgba(10, 11, 11, 1);
   position: relative;
   height: 584px;
   width: 100%;
+  @include mobile {
+    height: 690px;
+  }
   img {
     position: absolute;
     right: 0;
@@ -12,6 +21,11 @@
     height: 100%;
     z-index: 0;
     object-fit: cover;
+    @include mobile {
+      position: static;
+      height: 260px;
+      max-width: 100%;
+    }
   }
   &::after {
     content: "";
@@ -28,6 +42,9 @@
       rgba(0, 0, 0, 0.5) 20.41%,
       rgba(0, 0, 0, 0) 100%
     );
+    @include mobile {
+      display: none;
+    }
   }
   .content {
     position: absolute;
@@ -39,6 +56,11 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    @include mobile {
+      position: static;
+      margin-top: 24px;
+      max-width: 100%;
+    }
   }
   .top {
     display: flex;
@@ -49,6 +71,10 @@
       font-weight: 400;
       line-height: 24px;
       color: rgba(255, 255, 255, 0.7);
+      @include mobile {
+        font-size: 14px;
+        line-height: 20px;
+      }
     }
   }
   .body {
@@ -66,6 +92,10 @@
       line-clamp: 2;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
+      @include mobile {
+        font-size: 24px;
+        line-height: 32px;
+      }
     }
     h3 {
       font-size: 24px;
@@ -77,6 +107,15 @@
       line-clamp: 4;
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
+      @include mobile {
+        font-size: 18px;
+        line-height: 24px;
+      }
+    }
+  }
+  .trailerBtn {
+    @include mobile {
+
     }
   }
   .btns {
@@ -84,5 +123,35 @@
     display: flex;
     gap: 16px;
     justify-content: flex-start;
+    .aboutBtn {
+      @include mobile {
+        max-width: 167px;
+        min-width: 167px;
+      }
+    }
+    @include mobile {
+      margin-top: 32px;
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: initial;
+    }
+    .refreshBtn {
+      @include mobile {
+        max-width: 68px;
+        min-width: 68px;
+      }
+    }
+    .link {
+      button {
+        @include mobile {
+          width: 90vw !important;
+        }
+      }
+      button.trailerBtn {
+        @include mobile {
+          width: 251px !important;
+        }
+      }
+    }
   }
 }

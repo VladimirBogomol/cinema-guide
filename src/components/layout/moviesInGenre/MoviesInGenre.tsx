@@ -27,7 +27,7 @@ export default function MoviesInGenre({ }: Props) {
           <h2>{name}</h2>
         </Link>
         <div className={st.body}>
-          {moviesInGenre.slice(0, count).map((movie) => { return <FilmCard key={movie.id} img={movie.posterUrl} id={movie.id} />; })}
+          {moviesInGenre.slice(0, count).map((movie) => { return <FilmCard key={movie.id} className={st.card} img={movie.posterUrl} id={movie.id} />; })}
         </div>
         {count < moviesInGenre.length && <div className={st.more}>
           <Button sx={{ width: "218px" }} variant="primary" onClick={() => {setCount((prev) => prev + 10)}}>

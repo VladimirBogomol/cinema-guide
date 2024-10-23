@@ -10,6 +10,9 @@ import { Outlet } from "react-router-dom";
 
 export default function Home() {
   const dispatch = useAppDispatch();
+  const { openSearch } = useAppSelector(
+    (state) => state.user
+  );
   const { randomMovie, randomLoading } = useAppSelector(
     (state) => state.movies
   );
@@ -17,10 +20,12 @@ export default function Home() {
     dispatch(getRandomMovie());
     dispatch(getTopMovies());
   }, []);
+  console.log(openSearch);
+  
   return (
     <div className={st.root}>
       <Header />
-      <div className="container">
+      <div className={openSearch ? "container container-opacity" : "container"}>
         <Poster
           onRefresh={() => dispatch(getRandomMovie())}
           movie={randomMovie}

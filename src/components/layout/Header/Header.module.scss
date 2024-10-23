@@ -1,24 +1,73 @@
+@mixin laptop {
+  @media screen and (max-width: 1280px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: 770px) {
+    @content;
+  }
+}
+
 .root {
-    padding: 24px 0;
-    background: rgba(0, 0, 0, 0.5);
-    .row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    nav {
-        display: flex;
-        align-items: center;
-        gap: 40px;
-    }
-    a {
-        padding: 8px 0; 
-        color: #fff;
-        font-size: 24px;
-        font-weight: 400;
-        line-height: 32px;
-        &.active {
-            border-bottom: 1.5px solid rgba(220, 93, 252, 1)
+  padding: 24px 0;
+  background: rgba(0, 0, 0, 0.5);
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    img {
+        @include mobile {
+            max-width: 136px
         }
     }
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    @include laptop {
+      gap: 20px;
+    }
+    @include mobile {
+      display: none;
+    }
+  }
+  .profile {
+    @include mobile {
+      display: none;
+    }
+  }
+  .mobile__menu {
+    display: none;
+    @include mobile {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    button {
+        background: none;
+        position: relative;
+        top: 2px;
+    }
+  }
+
+  a {
+    padding: 8px 0;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    &.active {
+      border-bottom: 1.5px solid rgba(220, 93, 252, 1);
+    }
+    @include laptop {
+      font-size: 18px;
+    }
+    @include mobile {
+        font-size: 0px;
+        line-height: 0px;
+    }
+  }
 }

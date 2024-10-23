@@ -1,3 +1,9 @@
+@mixin mobile {
+  @media screen and (max-width: 770px) {
+    @content;
+  }
+}
+
 .root {
   position: relative;
   border: 1px solid rgba(255, 255, 255, 0.25);
@@ -7,7 +13,10 @@
   width: 224px;
   &:hover .delete {
     opacity: 1;
-  } 
+  }
+  @include mobile {
+    min-width: 224px;
+  }
   img {
     position: absolute;
     left: 0;

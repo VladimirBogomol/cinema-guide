@@ -15,9 +15,10 @@ type Props = {
     | boolean
     | null
     | undefined;
+  className?: string;
   sx?: React.CSSProperties;
   disabled?: boolean;
-  type?: "button" | "submit" | "reset" | undefined,
+  type?: "button" | "submit" | "reset" | undefined;
 };
 
 export default function Button({
@@ -27,12 +28,15 @@ export default function Button({
   sx,
   disabled = false,
   type = "button",
+  className = "",
 }: Props) {
   return (
-    <button type={type}
+    <button
+      type={type}
       className={classNames(
         st.root,
-        variant === "primary" ? st.primary : st.secondary
+        variant === "primary" ? st.primary : st.secondary,
+        className
       )}
       style={sx}
       onClick={onClick}

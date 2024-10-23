@@ -1,16 +1,33 @@
+@mixin mobile {
+  @media screen and (max-width: 770px) {
+    @content;
+  }
+}
+
 .root {
   padding: 64px 0 160px 0;
+  @include mobile {
+    padding: 24px 0 40px 0;
+  }
   h1 {
     margin-bottom: 64px;
     font-size: 48px;
     font-weight: 700;
     line-height: 56px;
+    @include mobile {
+      margin-bottom: 40px;
+      font-size: 24px;
+      line-height: 32px;
+    }
   }
   .body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     row-gap: 64px;
+    @include mobile {
+      row-gap: 24px;
+    }
   }
   .card {
     width: calc(100% / 4 - 20px);
@@ -19,6 +36,9 @@
     box-shadow: 0px 0px 80px 0px rgba(255, 255, 255, 0.33);
     border-radius: 24px;
     overflow: hidden;
+    @include mobile {
+      width: 100%;
+    }
     img {
       width: 100%;
       height: 220px;
