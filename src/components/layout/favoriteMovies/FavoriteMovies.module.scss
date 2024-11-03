@@ -1,3 +1,9 @@
+@mixin mobile {
+  @media screen and (max-width: 770px) {
+    @content;
+  }
+}
+
 .root {
   .body {
     margin-top: 64px;
@@ -5,5 +11,9 @@
     flex-wrap: wrap;
     row-gap: 64px;
     column-gap: 40px;
+  @include mobile {
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+  }
   }
 }

@@ -1,5 +1,4 @@
 import st from "./GenreList.module.scss";
-import img from "../../../assets/genresImg.png";
 import { useAppSelector } from "../../../redux/store";
 import drama from "../../../assets/drama.png"
 import comedy from "../../../assets/comedy.png"
@@ -11,10 +10,12 @@ import fantasy from "../../../assets/fantasy.png"
 import adventure from "../../../assets/adventure.png"
 import { Link } from "react-router-dom";
 
+type GenresImg = {
+[key : string]: string,
+} 
 
-type Props = {};
 
-const genresImg = {
+const genresImg: GenresImg = {
   drama: drama,
   comedy: comedy,
   crime: crime,
@@ -25,8 +26,8 @@ const genresImg = {
   adventure: adventure,
 };
 
-export default function GenreList({}: Props) {
-  const { genres, loading, error } = useAppSelector((state) => state.genre);
+export default function GenreList() {
+  const { genres } = useAppSelector((state) => state.genre);
 
   const filteredGenres = genres.filter((item) => item in genresImg);
 

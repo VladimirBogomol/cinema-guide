@@ -1,8 +1,4 @@
-import React from 'react'
-
-type Props = {}
-
-export default function RefreshIcon({}: Props) {
+export default function RefreshIcon() {
   return (
       <svg
         width="24"

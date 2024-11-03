@@ -75,7 +75,7 @@ export const userSlice = createSlice({
     builder.addCase(handleLogin.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(handleLogin.fulfilled, (state, action) => {
+    builder.addCase(handleLogin.fulfilled, (state) => {
       state.loading = false;
       state.error = "";
       state.authorized = true;
@@ -88,7 +88,7 @@ export const userSlice = createSlice({
     builder.addCase(handleRegister.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(handleRegister.fulfilled, (state, action) => {
+    builder.addCase(handleRegister.fulfilled, (state) => {
       state.loading = false;
       state.error = "";
       state.completeRegister = true;
@@ -112,7 +112,7 @@ export const userSlice = createSlice({
       state.error = "Произошла ошибка";
       state.authorized = false;
     });
-    builder.addCase(handleLogout.fulfilled, (state, action) => {
+    builder.addCase(handleLogout.fulfilled, (state) => {
       state.authorized = false;
       state.userCredentials = null;
     });

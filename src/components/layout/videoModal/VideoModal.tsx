@@ -11,12 +11,13 @@ export default function VideoModal() {
   const location = useLocation();
   const dispatch = useAppDispatch();
   const { id } = useParams();
+  const isMobile = window.innerWidth <= 770;
   const { currentMovie, currentLoading } = useAppSelector(
     (state) => state.movies
   );
 
   useEffect(() => {
-    dispatch(getCurrentMovie(id));
+    if (id) { dispatch(getCurrentMovie(id)); }
   }, [id, dispatch]);
 
   const trailerUrl = currentMovie?.trailerUrl;
@@ -26,8 +27,8 @@ export default function VideoModal() {
       logo={false}
       link={location.state.background.pathname}
       sx={{
-        width: "960px",
-        height: "540px",
+        width: isMobile ? "100%" : "960px",
+        height: isMobile ? "212px" : "540px",
         backgroundColor: "rgba(57, 59, 60, 1)",
         padding: "0",
         border: "1px solid rgba(255, 255, 255, 0.5)",

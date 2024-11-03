@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import SearchIcon from "../../../assets/icons/SearchIcon";
 import Raiting from "../raiting/Raiting";
 import st from "./Search.module.scss";
@@ -30,12 +30,13 @@ export default function Search({onClose = () => {}}:Props) {
     setValue("");
   }, [location, dispatch]);
 
-  function handleChange(e) {
-    setValue(e.target.value);
-    if (e.target.value.trim() === "") {
+  function handleChange(e: React.SyntheticEvent) {
+    const target = e.target as HTMLInputElement;
+    setValue(target.value);
+    if (target.value.trim() === "") {
       dispatch(setClearSearch());
     } else {
-      memoSearch(e.target.value);
+      memoSearch(target.value);
     }
   }
 
@@ -45,11 +46,11 @@ export default function Search({onClose = () => {}}:Props) {
     onClose();
   }
 
-  function handleDebounce(search) {
+  function handleDebounce(search: string) {
     dispatch(handleSearchMovies(search));
   }
 
-  function handleClick(id) {
+  function handleClick(id: number) {
     navigate(`/movies/${id}`);
   }
 
@@ -85,7 +86,7 @@ export default function Search({onClose = () => {}}:Props) {
                 <div className={st.top}>
                   <Raiting
                     sx={{ padding: "2px 8px", fontSize: "12px" }}
-                    rate={item.tmdbRating.toFixed(1)}
+                    rate={+item.tmdbRating.toFixed(1)}
                   />
                   <span>{item.releaseYear}</span>
                   <span>{item.genres.join(", ")}</span>

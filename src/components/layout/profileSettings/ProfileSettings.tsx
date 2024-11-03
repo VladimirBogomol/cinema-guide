@@ -1,4 +1,3 @@
-import React from "react";
 import st from "./ProfileSettings.module.scss";
 import MailIcon from "../../../assets/icons/MailIcon";
 import Button from "../../ui/button/Button";
@@ -6,12 +5,11 @@ import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import { handleLogout } from "../../../redux/slices/userReducer";
 import { useNavigate } from "react-router-dom";
 
-type Props = {};
-
-export default function ProfileSettings({}: Props) {
-  const { authorized, userCredentials } = useAppSelector((state) => state.user);
+export default function ProfileSettings() {
+  const { userCredentials } = useAppSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  
   return (
     <div className={st.root}>
       <div className={st.info}>
@@ -38,6 +36,7 @@ export default function ProfileSettings({}: Props) {
         </div>
       </div>
       <Button
+        className={st.logoutBtn}
         variant="primary"
         onClick={() => {
           dispatch(handleLogout()).then(()=> navigate("/"));

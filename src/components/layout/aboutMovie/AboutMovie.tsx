@@ -1,8 +1,5 @@
-import React, { useEffect } from 'react'
 import st from "./AboutMovie.module.scss"
-import { useParams } from 'react-router-dom';
-import { useAppDispatch } from '../../../redux/store';
-import { getCurrentMovie, Movie } from '../../../redux/slices/moviesReducer';
+import { Movie } from '../../../redux/slices/moviesReducer';
 
 type Props = {
   movie: Movie | null,

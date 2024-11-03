@@ -1,3 +1,9 @@
+@mixin mobile {
+  @media screen and (max-width: 770px) {
+    @content;
+  }
+}
+
 .root {
   background-color: black;
   h1 {
@@ -5,11 +11,20 @@
     font-size: 48px;
     font-weight: 700;
     line-height: 56px;
+
+    @include mobile {
+      margin: 24px 0;
+      font-size: 24px;
+      line-height: 32px;
+    }
   }
   .tabs {
     display: flex;
     align-items: center;
     gap: 64px;
+    @include mobile {
+      gap: 24px;
+    }
   }
   .tab {
     padding: 8px 0;

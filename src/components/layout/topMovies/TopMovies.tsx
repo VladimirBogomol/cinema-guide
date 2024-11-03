@@ -1,12 +1,9 @@
-import React from "react";
 import st from "./TopMovie.module.scss";
 import FilmCard from "../../ui/filmCard/FilmCard";
 import { useAppSelector } from "../../../redux/store";
 
-type Props = {};
-
-export default function TopMovies({}: Props) {
-  const { topMovies, loading } = useAppSelector((state) => state.movies);
+export default function TopMovies() {
+  const { topMovies } = useAppSelector((state) => state.movies);
   return (
     <div className={st.root}>
       <h2>Топ 10 фильмов</h2>

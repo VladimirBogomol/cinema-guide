@@ -1,9 +1,9 @@
 import st from "./Header.module.scss";
 import logo from "../../../assets/logo.png";
-import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import Search from "../../ui/search/Search";
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getProfile, setOpenSearch } from "../../../redux/slices/userReducer";
 import PersonIcon from "../../../assets/icons/PersonIcon";
 import SearchIcon from "../../../assets/icons/SearchIcon";

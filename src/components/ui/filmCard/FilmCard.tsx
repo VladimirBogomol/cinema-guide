@@ -1,4 +1,3 @@
-import React from "react";
 import st from "./FilmCard.module.scss";
 import { useNavigate } from "react-router-dom";
 import Xicon from "../../../assets/icons/Xicon";

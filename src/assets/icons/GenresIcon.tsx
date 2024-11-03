@@ -1,8 +1,4 @@
-import React from "react";
-
-type Props = {};
-
-export default function GenresIcon({}: Props) {
+export default function GenresIcon() {
   return (
     <svg
       width="24"

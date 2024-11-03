@@ -1,8 +1,4 @@
-import React from 'react'
-
-type Props = {}
-
-export default function BackIcon({}: Props) {
+export default function BackIcon() {
   return (
     <div>
       <svg

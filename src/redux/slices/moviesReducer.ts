@@ -52,19 +52,19 @@ const initialState: IinitialState = {
   currentMovie: null,
 };
 
-const getTopMovies = createAsyncThunk("movies/getTopMovies", (data) => {
+const getTopMovies = createAsyncThunk("movies/getTopMovies", () => {
   return axiosInstance.get(`/movie/top10`).then((res) => res.data);
 });
 
-const handleSearchMovies = createAsyncThunk("movies/handleSearchMovies", (search) => {
+const handleSearchMovies = createAsyncThunk("movies/handleSearchMovies", (search: string) => {
   return axiosInstance.get(`/movie?title=${search}&count=5`).then((res) => res.data);
 });
 
-const getRandomMovie = createAsyncThunk("movies/getRandomMovie", (data) => {
+const getRandomMovie = createAsyncThunk("movies/getRandomMovie", () => {
   return axiosInstance.get(`/movie/random`).then((res) => res.data);
 });
 
-const getCurrentMovie = createAsyncThunk("movies/getCurrentMovie", (id: any) => {
+const getCurrentMovie = createAsyncThunk("movies/getCurrentMovie", (id: string) => {
   return axiosInstance.get(`/movie/${id}`).then((res) => res.data);
 });
 

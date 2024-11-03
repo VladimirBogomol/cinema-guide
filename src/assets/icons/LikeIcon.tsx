@@ -1,11 +1,9 @@
-import React from 'react'
-
 type Props = {
   fill?: string,
   opacity?: number,
 }
 
-export default function LikeIcon({fill="none", opacity=1}: Props) {
+export default function LikeIcon({fill="none"}: Props) {
   return (
     <svg
       width="24"

@@ -26,7 +26,6 @@ export default function LoginModal() {
   });
 
   function onSubmit(values: {email: string, password: string}) {
-    console.log(values);
     dispatch(handleLogin(values)).then(() => navigate("/profile"))
 
   }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import st from "./MoviesInGenre.module.scss";
 import BackIcon from "../../../assets/icons/BackIcon";
 import FilmCard from "../../ui/filmCard/FilmCard";
@@ -7,9 +7,7 @@ import { Link, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../redux/store";
 import { getMoviesInGenre } from "../../../redux/slices/genreReducer";
 
-type Props = {};
-
-export default function MoviesInGenre({ }: Props) {
+export default function MoviesInGenre() {
   const dispatch = useAppDispatch();
   const { name } = useParams();
   const { moviesInGenre } = useAppSelector((state) => state.genre)

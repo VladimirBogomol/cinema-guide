@@ -1,8 +1,4 @@
-import React from 'react'
-
-type Props = {}
-
-export const StarIcon = (props: Props) => {
+export const StarIcon = () => {
   return (
     <svg
       width="16"

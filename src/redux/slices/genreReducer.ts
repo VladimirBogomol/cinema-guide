@@ -22,7 +22,7 @@ type Filter = {
   genre: string;
 };
 
-const getGenres = createAsyncThunk("genre/getGenres", (data) => {
+const getGenres = createAsyncThunk("genre/getGenres", () => {
   return axiosInstance.get(`/movie/genres`).then((res) => res.data);
 });
 

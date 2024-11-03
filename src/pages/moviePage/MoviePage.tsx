@@ -12,7 +12,7 @@ export default function MoviePage() {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(getCurrentMovie(id));
+    if (id) { dispatch(getCurrentMovie(id)); };
   }, [id, dispatch]);
 
   const { currentMovie, currentLoading } = useAppSelector((state) => state.movies); 

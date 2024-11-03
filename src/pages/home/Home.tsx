@@ -20,7 +20,6 @@ export default function Home() {
     dispatch(getRandomMovie());
     dispatch(getTopMovies());
   }, []);
-  console.log(openSearch);
   
   return (
     <div className={st.root}>

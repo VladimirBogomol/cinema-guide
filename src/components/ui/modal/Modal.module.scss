@@ -40,6 +40,14 @@
         @include mobile {
           top: 8px;
           right: 8px;
+          width: 32px;
+          height: 32px;
+        }
+        svg {
+          @include mobile {
+            width: 13px;
+            height: 13px;
+          }
         }
     }
     .img {
